@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users Project Permissions</title>
+
+    <script type="text/javascript" src="https://rally1.rallydev.com/apps/2.0/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){Ext.create("Rally.data.wsapi.Store",{model:"ProjectPermission",limit:1/0,fetch:["User","Role","Name","Project","UserName","SubscriptionAdmin","Workspace"],autoLoad:!0,listeners:{load:function(store,data,success){this._onDataLoaded(store,data)},scope:this}})},_onDataLoaded:function(store,results){_.remove(results,function(result){return result.get("User").SubscriptionAdmin===!0});var permissions=_.reduce(results,function(finalResult,permissionRecord){return finalResult[permissionRecord.get("User").UserName]=(finalResult[permissionRecord.get("User").UserName]||[]).concat(permissionRecord.get("Project")._refObjectName+" / "+permissionRecord.get("Role")),finalResult},{});this._show(permissions)},_show:function(permissions){var arrayOfPermissions=[];_.each(permissions,function(value,key){arrayOfPermissions.push({user:key,projects:value})}),this.add({xtype:"rallygrid",showPagingToolbar:!0,showRowActionsColumn:!1,editable:!1,store:Ext.create("Rally.data.custom.Store",{data:arrayOfPermissions}),columnCfgs:[{text:"User",dataIndex:"user",minWidth:500},{text:"Project / Role",dataIndex:"projects",minWidth:500,renderer:function(projects){var text=[];return _.each(projects,function(project){text.push(project)}),text.join("<br />")}}],margin:10})}});
+
+            Rally.launchApp('CustomApp', {
+                name:"Users Project Permissions",
+	            parentRepos:""
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+</body>
+</html>
