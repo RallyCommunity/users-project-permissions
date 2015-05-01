@@ -10,7 +10,7 @@ If you run as a Workspace Admin, it will grab all ProjectPermissions in the Work
 Unlike most WSAPI endpoints, ProjectPermissions endpoint doesn't acccept any query filter.
 It can be a dangerous query to run because of this.For workspaces with thousands of users and hundreds of projects, hitting this endpoint can end up creating a DB query that's accessing hundreds of thousands of rows.
 
-The screenshot above captures a run of this app by a workspace administrator of a small workspace with two users.
+The screenshot above captures a run of this app by a workspace administrator of a small workspace with three users.
 
 This app is not part of Rally App Catalog and is not supported by Rally. It is available AS IS.
 
