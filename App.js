@@ -41,10 +41,10 @@ Ext.define('CustomApp', {
             }),
             columnCfgs: [
                 {
-                    text: 'User',dataIndex: 'user', minWidth: 500
+                    text: 'User',dataIndex: 'user', minWidth: 400
                 },
                 {
-                    text: 'Project / Role',dataIndex: 'projects', minWidth: 500, renderer: function(projects){
+                    text: 'Project / Role',dataIndex: 'projects', minWidth: 400, renderer: function(projects){
                         var text = [];
                         _.each(projects, function(project){
                              text.push(project);
